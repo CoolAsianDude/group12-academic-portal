@@ -1,0 +1,341 @@
+@tailwind base; @tailwind components; @tailwind utilities;
+
+@layer base {
+  :root {
+    font-family: 'Montserrat', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  body {
+    @apply bg-[#0b0b0b] text-[#f4f4f4] antialiased;
+    background-color: #0b0b0b;
+    background-image: none;
+  }
+  button, a {
+    @apply transition-[transform,color,background-color,border-color,box-shadow] duration-200 ease-out;
+  }
+  button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+    @apply outline-none ring-1 ring-[#c5a059];
+  }
+  button:active {
+    @apply scale-[.99];
+  }
+  h1, h2, h3, h4, .brand-copy b, .student-brand b, .faculty-brand b {
+    font-family: 'Cinzel', Georgia, serif;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+}
+
+.scroll-reveal { opacity:0; transform:translateY(24px); transition:opacity .65s cubic-bezier(0.22,0.61,0.36,1),transform .65s cubic-bezier(0.22,0.61,0.36,1); transition-delay:calc(var(--i,0) * 90ms); will-change:opacity,transform; }
+.scroll-reveal.active { opacity:1; transform:none; }
+.profile-page *, .roadmap * { animation:none!important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal, .scroll-reveal.active { opacity:1; transform:none; transition:none; will-change:auto; }
+}
+
+@media print {
+  .print-hidden { display:none!important; }
+  body { background:white!important; color:black!important; }
+}
+
+.prose h1, .prose h2, .prose h3 { color:#c5a059; font-family:'Cinzel', serif; font-weight:600; letter-spacing:0.1em; }
+
+.btn-gold {
+  @apply inline-flex items-center gap-2 bg-[#c5a059] text-black px-6 py-3 rounded-none font-bold uppercase tracking-widest text-xs;
+  border: 1px solid #c5a059;
+  transition: all 0.3s ease;
+}
+.btn-gold:hover {
+  background-color: transparent;
+  color: #c5a059;
+}
+
+.page-shell { @apply max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12; }
+
+.hero-card {
+  @apply relative overflow-hidden rounded-none border border-[#333] bg-[#141414] text-white p-6 sm:p-9;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+}
+.hero-card h1 { @apply text-3xl sm:text-5xl font-normal tracking-wider; font-family: 'Cinzel', serif; }
+.hero-card p { @apply mt-3 text-white/60 max-w-2xl font-light text-sm tracking-wide; }
+.hero-badge { @apply absolute right-5 top-5 hidden sm:flex items-center gap-2 rounded-none bg-white/5 border border-white/10 px-4 py-2 text-xs uppercase tracking-widest text-[#c5a059]; }
+
+.glass-card {
+  @apply rounded-none border border-[#222] bg-[#111] shadow-xl;
+}
+
+.eyebrow { @apply text-[10px] font-bold uppercase tracking-[.25em] text-[#c5a059]; }
+.section-title { @apply text-xl sm:text-2xl font-normal tracking-wider text-white; font-family: 'Cinzel', serif; }
+.status-pill { @apply rounded-none bg-[#c5a059]/10 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[#c5a059] border border-[#c5a059]/30; }
+
+.roadmap { @apply grid gap-0 md:grid-cols-6; }
+.roadmap-item { @apply relative flex gap-4 md:block md:px-2; }
+.roadmap-node { @apply relative z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-none border border-[#333] bg-[#1a1a1a] font-bold text-white/40; }
+.roadmap-node.is-unlocked { @apply border-[#c5a059] text-[#c5a059]; }
+.roadmap-node.is-complete { @apply border-[#c5a059] bg-[#c5a059] text-black; animation:none; }
+.roadmap-line { @apply absolute left-[21px] top-11 h-10 w-0.5 bg-[#222] md:left-[calc(50%+20px)] md:top-[22px] md:h-0.5 md:w-[calc(100%-20px)]; }
+.roadmap-line.is-complete { @apply bg-[#c5a059]; }
+.roadmap-copy { @apply pb-8 md:pt-4; }
+.roadmap-copy h3 { @apply mt-1 font-normal tracking-wide text-white; font-family: 'Cinzel', serif; }
+.roadmap-copy p { @apply mt-1 text-xs leading-relaxed text-white/50; }
+
+.topic-link { @apply mt-3 inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-[#c5a059] hover:gap-2; }
+.locked-copy { @apply mt-3 block text-[10px] uppercase tracking-wider text-white/30; }
+.asset-hint { @apply mt-3 inline-flex items-center gap-1 text-[10px] uppercase tracking-wider text-white/40; }
+.back-link { @apply inline-flex text-xs font-bold uppercase tracking-wider text-[#c5a059] hover:-translate-x-1; }
+
+.topic-meta { @apply mt-6 flex flex-wrap gap-3 text-xs text-white/70 tracking-widest uppercase; }
+.topic-meta span { @apply inline-flex items-center gap-2 rounded-none bg-white/5 border border-white/10 px-3 py-2; }
+
+.tab-bar { @apply flex gap-1 overflow-x-auto rounded-none border border-[#222] bg-[#111] p-1; }
+.tab-bar button { @apply inline-flex shrink-0 items-center gap-2 rounded-none px-4 py-3 text-xs font-bold uppercase tracking-widest text-white/60 hover:bg-white/5 hover:text-white; }
+.tab-bar button.active { @apply bg-[#c5a059] text-black shadow-none font-bold; }
+
+.lesson-card, .quiz-card { @apply rounded-none border border-[#222] bg-[#111] p-6 sm:p-10 text-white/90; }
+.lesson-card { @apply min-h-[18rem] leading-8 font-light; }
+.pdf-frame { @apply overflow-hidden rounded-none border border-[#222] bg-[#111]; }
+
+.asset-card {
+  @apply flex items-center gap-3 rounded-none border border-[#222] bg-[#111] p-4 text-white hover:border-[#c5a059];
+}
+.asset-icon { @apply rounded-none bg-[#c5a059]/10 p-3 text-[#c5a059] border border-[#c5a059]/20; }
+.asset-card small { @apply text-[10px] uppercase tracking-widest text-white/40; }
+
+.icon-button { @apply rounded-none p-2 text-white/60 hover:bg-[#c5a059] hover:text-black; }
+
+.btn-primary {
+  @apply inline-flex items-center gap-2 rounded-none bg-[#c5a059] px-5 py-3 font-bold uppercase tracking-widest text-xs text-black shadow-none hover:bg-white hover:text-black active:scale-[.99];
+}
+
+.empty-card, .error-card { @apply rounded-none border border-dashed border-[#333] bg-[#111] p-10 text-center text-white/50 text-xs uppercase tracking-widest; }
+.error-card { @apply border-red-900/50 text-red-400; }
+.success-card { @apply rounded-none border border-emerald-900/50 bg-emerald-950/30 p-4 text-emerald-400 text-xs tracking-wider uppercase; }
+
+.feature-icon { @apply inline-flex rounded-none bg-[#c5a059] text-black p-3; }
+
+.field {
+  @apply w-full rounded-none border border-[#333] bg-[#141414] px-4 py-3 text-sm text-white outline-none transition-colors focus:border-[#c5a059];
+}
+
+.subject-card {
+  @apply rounded-none border border-[#222] bg-[#111] p-5 hover:border-[#c5a059];
+}
+.subject-card h3 { @apply mt-2 text-lg font-normal tracking-wide text-white; font-family: 'Cinzel', serif; }
+.subject-card p { @apply mt-1 text-xs text-white/50 font-light; }
+.subject-code { @apply inline-flex rounded-none bg-[#c5a059]/10 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[#c5a059] border border-[#c5a059]/20; }
+
+.timer { @apply mt-5 inline-flex items-center gap-2 rounded-none border border-[#c5a059]/40 bg-[#1a1a1a] px-4 py-2 text-sm font-bold uppercase tracking-widest text-[#c5a059]; }
+.timer.urgent { @apply border-red-900 bg-red-950/50 text-red-400; }
+
+.quiz-question { @apply rounded-none border border-[#222] bg-[#111] p-5 sm:p-7; }
+.quiz-question legend { @apply flex items-start gap-3 text-base font-normal tracking-wider text-white; font-family: 'Cinzel', serif; }
+.question-number { @apply inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-none bg-[#c5a059] text-xs font-black text-black; }
+.answer-option { @apply mt-3 flex cursor-pointer items-center gap-3 rounded-none border border-[#222] bg-[#141414] p-4 text-white/80 hover:border-[#c5a059] hover:bg-white/5; }
+.answer-option.selected { @apply border-[#c5a059] bg-[#c5a059]/10 text-white; }
+.answer-option input { @apply h-4 w-4 accent-[#c5a059]; }
+.answer-check { @apply ml-auto flex shrink-0 text-[#c5a059]; }
+
+.result-card { @apply mx-auto max-w-2xl rounded-none p-10 text-center border border-[#333] bg-[#111]; }
+.result-card.passed { @apply border-emerald-900/50 bg-emerald-950/20 text-emerald-300; }
+.result-card.failed { @apply border-red-900/50 bg-red-950/20 text-red-300; }
+.result-card h1 { @apply my-3 text-5xl font-light tracking-widest; font-family: 'Cinzel', serif; }
+
+.btn-secondary {
+  @apply inline-flex items-center gap-2 rounded-none border border-[#333] bg-transparent px-4 py-2 text-xs font-bold uppercase tracking-widest text-white/80 hover:border-[#c5a059] hover:text-[#c5a059];
+}
+
+.report-card { @apply overflow-hidden rounded-none border border-[#222] bg-[#111] p-5 sm:p-7; }
+.report-actions { @apply mb-5 flex flex-wrap items-center justify-between gap-4; }
+.report-table { @apply w-full text-left text-xs uppercase tracking-wider; }
+.report-table th { @apply whitespace-nowrap border-b border-[#222] bg-[#161616] px-4 py-3 font-bold text-[#c5a059]; }
+.report-table td { @apply whitespace-nowrap border-b border-[#1a1a1a] px-4 py-3 text-white/80; }
+.report-table tbody tr { @apply hover:bg-white/5; }
+
+.pass-pill, .pending-pill { @apply rounded-none px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider; }
+.pass-pill { @apply bg-emerald-950/60 text-emerald-400 border border-emerald-900; }
+.pending-pill { @apply bg-amber-950/60 text-amber-400 border border-amber-900; }
+
+.summary-card { @apply rounded-none border border-[#c5a059]/30 bg-[#161616] p-5 text-white/80 text-sm font-light; }
+.verified-badge { @apply inline-flex items-center gap-2 rounded-none border border-[#c5a059] bg-black px-3 py-2 text-[10px] font-black tracking-widest uppercase text-[#c5a059]; }
+
+.upload-dropzone { @apply flex cursor-pointer flex-col items-center justify-center gap-2 rounded-none border-2 border-dashed border-[#333] bg-[#111] p-8 text-center text-white/50 text-xs uppercase tracking-widest transition-colors hover:border-[#c5a059]; }
+.upload-dropzone input { @apply sr-only; }
+
+.profile-avatar { @apply flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-none border border-[#c5a059] bg-black text-[#c5a059] font-serif text-xl; }
+.profile-avatar img { @apply h-full w-full object-cover; }
+
+.nav-shell { @apply sticky top-0 z-40 border-b border-[#222] bg-[#0b0b0b]/95 text-white backdrop-blur-md; }
+.nav-inner { @apply mx-auto flex min-h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6; }
+.brand-lockup { @apply inline-flex min-w-0 shrink-0 items-center gap-2.5 rounded-none py-2; }
+.brand-mark { @apply inline-flex h-9 w-9 items-center justify-center rounded-none bg-[#c5a059] text-black font-bold; }
+.brand-copy { @apply flex min-w-0 flex-col leading-none; }
+.brand-copy b { @apply text-xs font-bold tracking-[.2em] text-white; }
+.brand-copy small { @apply mt-1 max-w-[12rem] truncate text-[9px] uppercase tracking-widest text-white/40; }
+
+.nav-actions { @apply flex min-w-0 items-center gap-1 overflow-x-auto py-1 sm:gap-2; }
+.nav-link { @apply inline-flex shrink-0 items-center gap-1.5 rounded-none border border-transparent px-3 py-2 text-xs font-bold uppercase tracking-widest text-white/60 hover:border-[#333] hover:bg-white/5 hover:text-[#c5a059]; }
+.nav-link.active { @apply border-[#c5a059]/40 bg-[#c5a059]/10 text-[#c5a059]; }
+.nav-signout { @apply ml-1 inline-flex shrink-0 items-center gap-1.5 rounded-none bg-[#c5a059] px-3 py-2 text-xs font-bold uppercase tracking-widest text-black shadow-none hover:bg-white sm:px-4; }
+
+.student-app, .faculty-app { @apply h-screen overflow-hidden bg-[#0b0b0b] text-white; background-image: none; }
+.student-sidebar, .faculty-sidebar { @apply fixed inset-y-0 left-0 z-50 flex w-64 -translate-x-full flex-col border-r border-[#222] bg-[#0d0d0d] px-4 py-5 transition-transform duration-200 ease-out lg:translate-x-0; }
+.student-sidebar.is-open, .faculty-sidebar.is-open { @apply translate-x-0; }
+
+.student-sidebar-head, .faculty-sidebar-head { @apply flex items-center justify-between px-2; }
+.student-brand, .faculty-brand { @apply inline-flex items-center gap-2.5 rounded-none p-2; }
+.student-brand-mark, .faculty-brand-mark { @apply inline-flex h-9 w-9 items-center justify-center rounded-none bg-[#c5a059] text-black font-bold; }
+.student-brand b, .faculty-brand b { @apply block text-xs font-bold tracking-[.18em] text-white; }
+.student-brand small, .faculty-brand small { @apply mt-1 block text-[9px] font-bold uppercase tracking-widest text-white/40; }
+
+.student-sidebar-close, .faculty-sidebar-close, .student-mobile-menu, .faculty-mobile-menu { @apply rounded-none p-2 text-white/60 hover:bg-white/5 hover:text-[#c5a059] lg:hidden; }
+
+.student-sidebar-nav, .faculty-sidebar-nav, .student-side-subjects { @apply mt-9 space-y-1; }
+.student-nav-label, .faculty-nav-label { @apply mb-2 block px-3 text-[9px] font-bold uppercase tracking-[.25em] text-white/30; }
+
+.student-side-link, .faculty-side-link { @apply flex items-center gap-3 rounded-none px-3 py-2.5 text-xs font-bold uppercase tracking-wider text-white/60 hover:bg-white/5 hover:text-[#c5a059]; }
+.student-side-link.active, .faculty-side-link.active { @apply bg-[#c5a059] text-black font-bold shadow-none; }
+
+.student-subject-link { @apply flex w-full items-center gap-2 rounded-none px-3 py-2 text-left text-[11px] font-bold uppercase tracking-wider text-white/50 hover:bg-white/5 hover:text-[#c5a059]; }
+.student-subject-link.active { @apply bg-[#c5a059]/10 text-[#c5a059] border-l-2 border-[#c5a059]; }
+.student-subject-dot { @apply h-1.5 w-1.5 rounded-none bg-[#c5a059]; }
+
+.student-sidebar-foot, .faculty-sidebar-foot { @apply mt-auto flex items-center justify-between border-t border-[#222] px-2 pt-4; }
+.student-mini-profile, .faculty-mini-profile, .student-topbar-profile, .faculty-topbar-profile { @apply flex min-w-0 items-center gap-2; }
+.student-mini-profile b, .faculty-mini-profile b, .student-topbar-profile b, .faculty-topbar-profile b { @apply truncate text-xs font-bold tracking-wider text-white; }
+.student-mini-profile small, .faculty-mini-profile small, .student-topbar-profile small, .faculty-topbar-profile small { @apply truncate text-[9px] uppercase tracking-widest text-white/40; }
+.student-mini-avatar, .faculty-mini-avatar, .student-avatar, .faculty-avatar { @apply inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-none bg-[#c5a059] text-[10px] font-black text-black; }
+.student-logout, .faculty-logout { @apply rounded-none p-2 text-white/40 hover:bg-red-950/50 hover:text-red-400; }
+
+.student-sidebar-scrim, .faculty-sidebar-scrim { @apply fixed inset-0 z-50 bg-black/80 backdrop-blur-sm lg:hidden; }
+
+.student-main, .faculty-main { @apply h-full overflow-y-auto lg:pl-64 bg-[#0b0b0b]; }
+.student-topbar, .faculty-topbar { @apply sticky top-0 z-40 flex h-16 items-center gap-3 border-b border-[#222] bg-[#0b0b0b]/90 px-4 backdrop-blur-md sm:px-8; }
+
+.student-search { @apply flex max-w-lg flex-1 items-center gap-2 rounded-none border border-[#333] bg-[#141414] px-3 py-2 text-white/40; }
+.student-search input { @apply min-w-0 flex-1 bg-transparent text-xs text-white outline-none placeholder:text-white/30; }
+.student-search kbd { @apply hidden rounded-none border border-[#333] bg-[#1c1c1c] px-1.5 py-0.5 text-[9px] font-bold text-white/40 sm:block; }
+
+.student-topbar-profile, .faculty-topbar-profile { @apply ml-auto border-l border-[#222] pl-3 sm:pl-5; }
+.student-canvas, .faculty-canvas { @apply mx-auto max-w-[1500px] p-4 sm:p-7 lg:p-10; }
+
+.student-dashboard-grid, .faculty-dashboard-grid { @apply grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4; }
+
+.student-welcome-card, .faculty-welcome-card { @apply relative col-span-1 flex min-h-[255px] overflow-hidden rounded-none border border-[#333] bg-[#141414] p-6 text-white shadow-xl md:col-span-2; }
+.student-welcome-card h1, .faculty-welcome-card h1 { @apply mt-2 text-3xl font-normal tracking-wider sm:text-4xl; font-family: 'Cinzel', serif; }
+.student-welcome-card h1 em, .faculty-welcome-card h1 em { @apply not-italic text-[#c5a059]; }
+.student-welcome-card p, .faculty-welcome-card p { @apply mt-3 max-w-sm text-xs font-light text-white/60 tracking-wide; }
+
+.student-overline, .faculty-overline { @apply text-[9px] font-bold uppercase tracking-[.25em] text-[#c5a059]; }
+.student-overline.muted, .faculty-overline.muted { @apply text-white/40; }
+
+.student-subject-meta { @apply mt-5 flex flex-wrap gap-2 text-[10px] uppercase tracking-wider text-white/70; }
+.student-subject-meta span { @apply rounded-none border border-white/10 bg-white/5 px-2.5 py-1.5; }
+
+.student-light-button { @apply mt-6 inline-flex items-center gap-1.5 rounded-none bg-[#c5a059] px-4 py-2.5 text-[10px] font-bold uppercase tracking-widest text-black hover:bg-white; }
+.student-welcome-orb, .faculty-welcome-art { @apply absolute -bottom-10 right-8 flex h-40 w-40 flex-col items-center justify-center rounded-none border border-[#c5a059]/30 bg-[#1c1c1c] text-center text-[#c5a059] backdrop-blur-sm; }
+.student-welcome-orb span, .faculty-welcome-art span { @apply mt-2 text-[9px] font-bold uppercase tracking-widest text-white/50; }
+
+.student-stat-card, .faculty-stat-card { @apply flex min-h-[155px] flex-col rounded-none border border-[#222] bg-[#111] p-5; }
+.student-stat-card.dark, .faculty-stat-card.dark { @apply border-[#222] bg-[#141414] text-white; }
+
+.student-card-icon, .faculty-card-icon { @apply mb-4 flex h-8 w-8 items-center justify-center rounded-none bg-[#c5a059]/10 text-[#c5a059] border border-[#c5a059]/20; }
+.student-stat-card small, .faculty-stat-card small { @apply text-[10px] font-bold uppercase tracking-wider text-white/40; }
+.student-stat-card strong, .faculty-stat-card strong { @apply mt-1 block text-3xl font-light tracking-wider text-white; font-family: 'Cinzel', serif; }
+.student-stat-card p, .faculty-stat-card p { @apply mt-auto text-[10px] uppercase tracking-wider text-white/40; }
+
+.student-progress-track { @apply mt-3 h-1 overflow-hidden rounded-none bg-[#222]; }
+.student-progress-track span { @apply block h-full rounded-none bg-[#c5a059]; }
+
+.student-inline-link, .student-text-link { @apply mt-3 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest text-[#c5a059] hover:gap-2; }
+
+.student-roadmap-card, .student-reader-card, .student-score-card, .faculty-create-card, .faculty-subjects-card { @apply rounded-none border border-[#222] bg-[#111] p-5 sm:p-6; }
+.student-roadmap-card { @apply md:col-span-2 xl:col-span-3; }
+
+.student-section-head h2, .faculty-section-head h2 { @apply mt-1 text-base font-normal tracking-widest text-white; font-family: 'Cinzel', serif; }
+
+.student-step span, .student-step svg { @apply flex h-8 w-8 items-center justify-center rounded-none border border-[#333] bg-[#1a1a1a] text-xs font-bold text-white/40; }
+.student-step small { @apply text-[8px] uppercase tracking-wider text-white/40; }
+.student-step.current span { @apply border-[#c5a059] bg-[#c5a059] text-black font-bold; }
+.student-step.complete span { @apply border-[#c5a059] bg-[#c5a059] text-black font-bold; }
+.student-step-line { @apply mt-4 h-px flex-1 bg-[#222]; }
+.student-step-line.complete { @apply bg-[#c5a059]; }
+
+.student-reader-body { @apply mt-6 flex items-start gap-4 rounded-none bg-[#141414] p-5 border border-[#222]; }
+.student-reader-icon { @apply rounded-none bg-[#1c1c1c] p-3 text-[#c5a059] border border-[#333]; }
+.student-verified { @apply inline-flex items-center gap-1 rounded-none bg-emerald-950/60 border border-emerald-900 px-2.5 py-1.5 text-[9px] font-bold uppercase tracking-widest text-emerald-400; }
+
+.student-score-card { @apply md:col-span-2 xl:col-span-2; }
+.student-score-summary { @apply mt-5 flex items-end gap-3 border-b border-[#222] pb-4; }
+.student-score-summary strong { @apply text-4xl font-light tracking-widest text-[#c5a059]; font-family: 'Cinzel', serif; }
+.student-score-list div { @apply flex justify-between border-b border-[#1a1a1a] py-1.5 text-xs; }
+.student-score-list span { @apply text-white/40 uppercase tracking-wider text-[10px]; }
+.student-score-list b { @apply text-white/90; }
+
+.student-empty-state { @apply mx-auto max-w-lg rounded-none border border-dashed border-[#333] bg-[#111] p-12 text-center text-white/40; }
+.student-empty-state h1 { @apply mt-4 text-xl font-normal tracking-widest text-white; font-family: 'Cinzel', serif; }
+
+.faculty-create-form { @apply mt-6 grid gap-3 md:grid-cols-2 xl:grid-cols-5; }
+.faculty-subject-card { @apply rounded-none border border-[#222] bg-[#141414] p-4 transition-colors hover:border-[#c5a059]; }
+.faculty-subject-status { @apply rounded-none bg-emerald-950/60 border border-emerald-900 px-2 py-1 text-[9px] font-bold uppercase tracking-widest text-emerald-400; }
+.faculty-subject-card h3 { @apply mt-4 text-sm font-normal tracking-wide text-white; font-family: 'Cinzel', serif; }
+.faculty-subject-actions { @apply mt-5 flex items-center gap-2 border-t border-[#222] pt-3; }
+.faculty-action-link { @apply inline-flex items-center gap-1 rounded-none px-2 py-1.5 text-[10px] font-bold uppercase tracking-wider text-white/60 hover:bg-white/5 hover:text-[#c5a059]; }
+
+.home-page { background: #0b0b0b; color: #f4f4f4; }
+.home-hero { @apply relative isolate grid min-h-[calc(100vh-4rem)] overflow-hidden bg-[#0b0b0b] text-white lg:grid-cols-[1.15fr_.85fr]; border-bottom: 1px solid #222; }
+.home-hero::before { content:''; position:absolute; inset:0; z-index:-1; background: radial-gradient(circle at 10% 20%, rgba(197,160,89,0.08), transparent 30rem); }
+.home-hero-content { @apply relative z-10 flex flex-col justify-center px-7 py-16 sm:px-14 lg:px-[clamp(3rem,9vw,9rem)] lg:py-20; }
+.home-kicker { @apply inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[.25em] text-[#c5a059]; }
+.home-mark { @apply mt-10 flex h-16 w-16 items-center justify-center rounded-none bg-[#c5a059] text-black font-bold; }
+.home-index { @apply mt-8 text-[10px] font-bold uppercase tracking-[.25em] text-white/30; }
+.home-hero h1 { @apply mt-4 text-5xl font-normal leading-tight tracking-wider sm:text-7xl; font-family: 'Cinzel', serif; }
+.home-hero h1 em { @apply not-italic text-[#c5a059]; }
+.home-lede { @apply mt-7 max-w-md text-sm font-light leading-relaxed text-white/60; }
+.home-outline-button { @apply inline-flex items-center rounded-none border border-white/20 px-6 py-3 text-xs font-bold uppercase tracking-widest text-white hover:border-[#c5a059] hover:text-[#c5a059]; }
+.home-feature-card { @apply relative rounded-none border border-[#222] bg-[#111] p-5 shadow-xl transition-all hover:border-[#c5a059]; }
+.home-feature-number { @apply absolute right-5 top-5 text-[9px] font-black tracking-widest text-white/20; }
+.home-feature-icon { @apply flex h-10 w-10 items-center justify-center rounded-none bg-[#c5a059] text-black; }
+.home-feature-card h3 { @apply mt-5 font-normal tracking-wide text-white; font-family: 'Cinzel', serif; }
+.home-feature-card p { @apply mt-2 text-xs font-light leading-relaxed text-white/50; }
+
+.auth-page { @apply relative flex min-h-[calc(100vh-4rem)] w-full items-center justify-center overflow-x-hidden overflow-y-auto bg-[#0b0b0b] p-0; }
+.auth-shell { @apply relative z-10 grid min-h-[calc(100vh-4rem)] w-full overflow-hidden border border-[#222] bg-[#111] shadow-2xl lg:grid-cols-[1.03fr_.97fr]; }
+.auth-visual { @apply relative flex min-h-0 flex-col overflow-hidden bg-[#141414] p-6 text-white sm:p-8 border-r border-[#222]; }
+.auth-logo { @apply inline-flex h-9 w-9 items-center justify-center rounded-none bg-[#c5a059] text-black font-bold; }
+.auth-form-panel { @apply flex flex-col justify-center p-6 sm:p-9 bg-[#0b0b0b]; }
+.auth-field { @apply mt-1.5 w-full rounded-none border border-[#333] bg-[#141414] px-4 py-2.5 text-sm text-white outline-none focus:border-[#c5a059]; }
+.auth-submit { @apply inline-flex w-full items-center justify-center gap-2 rounded-none bg-[#c5a059] py-3 text-xs font-bold uppercase tracking-widest text-black shadow-none hover:bg-white; }
+.auth-error { @apply rounded-none border border-red-900/50 bg-red-950/40 px-3 py-2 text-xs text-red-400 uppercase tracking-wider; }
+.auth-info { @apply flex items-center gap-2 rounded-none border border-amber-900/50 bg-amber-950/40 px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-amber-400; }
+.auth-role-toggle { @apply flex rounded-none bg-[#141414] p-1 border border-[#333]; }
+.auth-role-toggle button { @apply flex-1 rounded-none px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-white/50; }
+.auth-role-toggle button.active { @apply bg-[#c5a059] text-black shadow-none; }
+
+.slide-thumbnails { @apply flex gap-3 overflow-x-auto rounded-none bg-[#111] p-3 border border-[#222]; }
+.slide-thumbnail { @apply min-w-40 rounded-none border border-[#222] bg-[#141414] p-3 text-left hover:border-[#c5a059]; }
+.slide-thumbnail.selected { @apply border-2 border-[#c5a059] bg-[#c5a059]/10; }
+.slide-editor-panel { @apply min-h-80 rounded-none border border-[#222] bg-[#111] p-4 sm:p-6; }
+.slide-live-preview { @apply mt-5 rounded-none border border-[#333] bg-[#141414] p-6 text-white; }
+
+.ppt-shell { @apply relative overflow-hidden rounded-none border border-[#333] bg-[#0b0b0b] text-white shadow-2xl; }
+.ppt-toolbar { @apply flex flex-wrap items-center justify-between gap-4 border-b border-[#222] bg-[#111] px-4 py-4 sm:px-6; }
+.ppt-kicker { @apply block text-[10px] font-bold uppercase tracking-[.2em] text-[#c5a059]; }
+.ppt-back-button { @apply inline-flex items-center gap-1 rounded-none border border-[#333] px-3 py-2 text-xs font-bold uppercase tracking-widest text-white hover:border-[#c5a059] hover:text-[#c5a059]; }
+.ppt-icon-button { @apply rounded-none border border-[#333] p-2 text-white hover:bg-white/5; }
+.ppt-progress { @apply h-1 bg-[#222]; }
+.ppt-progress div { @apply h-full bg-[#c5a059]; }
+.ppt-stage { @apply min-h-[30rem] overflow-hidden px-5 py-8 sm:px-10 sm:py-12 bg-[#0b0b0b]; }
+.ppt-section { @apply inline-flex rounded-none border border-[#c5a059]/30 bg-[#c5a059]/10 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[#c5a059]; }
+.ppt-copy h2 { @apply mx-auto mt-6 max-w-4xl text-3xl font-normal tracking-widest text-white sm:text-5xl; font-family: 'Cinzel', serif; }
+.ppt-subtitle { @apply mx-auto mt-4 max-w-2xl text-sm font-light leading-relaxed text-white/60; }
+.ppt-copy li { @apply relative border-l-2 border-[#c5a059] pl-5 text-sm font-light leading-relaxed text-white/80 sm:text-base; }
+.ppt-visual { @apply flex min-h-64 items-center justify-center overflow-hidden rounded-none border border-[#333] bg-[#111] p-4; }
+.ppt-controls { @apply flex items-center justify-between gap-3 border-t border-[#222] bg-[#111] px-4 py-4 sm:px-6; }
+.ppt-nav-button { @apply inline-flex items-center gap-1 rounded-none border border-[#333] px-3 py-2 text-xs font-bold uppercase tracking-widest text-white hover:border-[#c5a059] hover:text-[#c5a059]; }
+.ppt-dots button { @apply h-1.5 w-2 shrink-0 rounded-none bg-white/20; }
+.ppt-dots button.active { @apply w-6 bg-[#c5a059]; }
+.ppt-picker { @apply absolute inset-16 z-20 overflow-auto rounded-none border border-[#333] bg-[#111]/95 p-4 shadow-2xl backdrop-blur-md; }
+.ppt-picker-grid button { @apply flex gap-3 rounded-none border border-[#222] p-3 text-left hover:border-[#c5a059] hover:bg-white/5; }
+.ppt-picker-grid span { @apply flex h-7 w-7 shrink-0 items-center justify-center rounded-none bg-white/5 text-xs font-bold text-[#c5a059]; }
+
+.skeleton { @apply animate-pulse rounded-none bg-[#222]; }
